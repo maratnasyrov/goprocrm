@@ -13,6 +13,7 @@
 
 Route::group(['middleware'=>'auth'], function() {
     Route::resource('/tender', 'TenderController');
+    Route::resource('/manager', 'ManagerController');
 });
 
 Route::get('/', function () {
