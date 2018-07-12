@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tender;
+use App\Manager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,9 @@ class TenderController extends Controller
      */
     public function index()
     {
-        return view('tenders.index', [
+        $managers = Manager::all();
+
+        return view('tenders.index', compact('managers'), [
             'tenders' => Tender::orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
@@ -27,7 +30,9 @@ class TenderController extends Controller
      */
     public function create()
     {
-        return view('tenders.create');
+        $managers = Manager::all();
+
+        return view('tenders.create', compact('managers'));
     }
 
     /**
@@ -36,9 +41,14 @@ class TenderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Tender $tender, Request $request)
+    public function store(Request $request)
     {
-        $tender->create($request->all());
+        $tender = Tender::create($request->all());
+
+        if($request->input['managers']) {
+            $tender->managers()->attach($request->input['managers']);
+        }
+
         return redirect()->route('tender.index');
     }
 

@@ -16,8 +16,8 @@ class CreateTendersTable extends Migration
         Schema::create('tenders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('number');
-            $table->integer('manager_id');
-            $table->integer('courier_id');
+            $table->integer('manager_id')->nullable();
+            $table->integer('courier_id')->nullable();
             $table->boolean('win')->default(false);
             $table->timestamps();
         });

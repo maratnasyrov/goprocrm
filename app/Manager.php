@@ -11,4 +11,14 @@ class Manager extends Model
         'surname',
         'phone'
     ];
+
+    public function tenders()
+    {
+        return $this->hasMany('App\Manager', 'App\Tender');
+    }
+
+    public function full_name()
+    {
+        return $this->name . " " . $this->surname;
+    }
 }
