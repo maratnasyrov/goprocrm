@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tender;
-use App\Manager;
+use App\Customer;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class TenderController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,8 @@ class TenderController extends Controller
      */
     public function index()
     {
-        $managers = Manager::all();
-
-        return view('tenders.index', compact('managers'), [
-            'tenders' => Tender::orderBy('created_at', 'desc')->paginate(10)
+        return view('customers.index', [
+            'customers' => Customer::orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
 
@@ -30,9 +26,7 @@ class TenderController extends Controller
      */
     public function create()
     {
-        $managers = Manager::all();
-
-        return view('tenders.create', compact('managers'));
+        return view('customers.create');
     }
 
     /**
@@ -43,33 +37,29 @@ class TenderController extends Controller
      */
     public function store(Request $request)
     {
-        $tender = Tender::create($request->all());
+        $customer = Customer::create($request->all());
 
-        if($request->input['managers']) {
-            $tender->managers()->attach($request->input['managers']);
-        }
-
-        return redirect()->route('tender.index');
+        return redirect()->route('customer.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tender  $tender
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Tender $tender)
+    public function show(Customer $customer)
     {
-        return view('tenders.show', compact('tender'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tender  $tender
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tender $tender)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -78,10 +68,10 @@ class TenderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tender  $tender
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tender $tender)
+    public function update(Request $request, Customer $customer)
     {
         //
     }
@@ -89,13 +79,13 @@ class TenderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tender  $tender
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tender $tender)
+    public function destroy(Customer $customer)
     {
-        $tender->delete();
+        $customer->delete();
 
-        return redirect()->route('tender.index');
+        return redirect()->route('customer.index');
     }
 }

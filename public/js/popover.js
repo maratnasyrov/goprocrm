@@ -8,3 +8,10 @@ $("#new-tender-p").popover({
         return $('#new-tender-label').html();
     }
 })
+
+$("#new-customer-p").popover({
+    html: true,
+    content:  function() {
+        return $('#new-customer-label').html();
+    }
+})

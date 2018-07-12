@@ -8,8 +8,11 @@
     <div class="container">
         @forelse ($tenders as $tender)
             <div class="row tender-part">
-                <div class="col-9 tender-number">
-                    {{$tender->number}}
+                <div class="col-7 tender-number">
+                    <a href="{{route('tender.show', $tender)}}">{{$tender->number}}</a>
+                </div>
+                <div class="col-2">
+
                 </div>
                 <div class="col-2 tender-manager">
                     {{$tender->manager()}}
@@ -26,7 +29,7 @@
     </div>
 </div>
 
-<div id="new-tender-label" class="container" style="display: none">
+<div id="new-tender-label" class="container popover-customer" style="display: none">
     @include('tenders._form')
 </div>
 

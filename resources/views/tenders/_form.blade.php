@@ -17,5 +17,5 @@
         </select>
     </div>
 
-    <input class="btn btn-success" type="submit" value="Сохранить">
+    <button class="btn btn-success" type="submit" value="Сохранить">Сохранить</button>
 </form>
