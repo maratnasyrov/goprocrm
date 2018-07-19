@@ -15,3 +15,10 @@ $("#new-customer-p").popover({
         return $('#new-customer-label').html();
     }
 })
+
+$("#add-customers-p").popover({
+    html: true,
+    content:  function() {
+        return $('#add-customers-label').html();
+    }
+})

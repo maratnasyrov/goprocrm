@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tender;
 use App\Manager;
+use App\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -60,7 +61,8 @@ class TenderController extends Controller
      */
     public function show(Tender $tender)
     {
-        return view('tenders.show', compact('tender'));
+        $customers = Customer::all();
+        return view('tenders.show', compact('tender', 'customers'));
     }
 
     /**
@@ -71,7 +73,9 @@ class TenderController extends Controller
      */
     public function edit(Tender $tender)
     {
-        //
+        $customers = Customer::all();
+        $managers = Manager::all();
+        return view('tenders.edit', compact('tender', 'managers', 'customers'));
     }
 
     /**
@@ -83,7 +87,9 @@ class TenderController extends Controller
      */
     public function update(Request $request, Tender $tender)
     {
-        //
+        $tender->update($request->all());
+
+        return redirect()->route('tender.show', [$tender]);
     }
 
     /**

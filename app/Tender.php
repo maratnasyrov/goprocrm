@@ -22,4 +22,8 @@ class Tender extends Model
             return 'Не назначен';
         }
     }
+
+    public function courier() {
+        return 'Не назначен';
+    }
 }

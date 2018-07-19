@@ -1,3 +1,7 @@
-#customer .popover {
+#new-customer .popover {
     min-width: 500px;
+}
+
+#add-customers .popover {
+    min-width: 300px;
 }

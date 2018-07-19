@@ -20,9 +20,15 @@
     padding: .4rem;
 }
 
-.tender-manager {
+.courier-info, .tender-manager-info, .customer-info {
     border-left: 1px solid  #ced4da;
+    border-right: 1px solid  #ced4da;
     text-align: center;
     padding: .4rem;
     color: #9c9c9c;
+}
+
+.add-customers, .new-customer {
+    background-color: #fff;
+    border: none;
 }
