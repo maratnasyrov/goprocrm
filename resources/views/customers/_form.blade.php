@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="{{route('customer.store')}}" method="post">
+<form class="form-horizontal" action="{{ route('customer.store') }}" method="post">
     {{ csrf_field() }}
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -61,5 +61,6 @@
           </select>
         </div>
     </div>
+    <input name="tender_id" type="text" class="form-control" value="{{ $tender->id }}" hidden>
     <button type="submit" class="btn btn-success">Сохранить</button>
 </form>

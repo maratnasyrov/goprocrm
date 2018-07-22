@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Tender;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -38,8 +39,11 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $customer = Customer::create($request->all());
+        $tender = Tender::find($request->tender_id);
 
-        return redirect()->route('customer.index');
+        $tender->customer_id = $customer->id;
+        $tender->save();
+        return redirect()->route('tender.show', $tender);
     }
 
     /**

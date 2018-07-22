@@ -1,9 +1,12 @@
 .tender-part {
     padding: 0.5rem;
-    width: 100%;
     border: 1px solid #ced4da;
     border-bottom: none;
     background-color: #fff;
+}
+
+.tender-show {
+    border-bottom: 1px solid #ced4da;
 }
 
 .tender-part:last-child {
@@ -18,10 +21,10 @@
 
 .tender-number {
     padding: .4rem;
+    border-right: 1px solid  #ced4da;
 }
 
-.courier-info, .tender-manager-info, .customer-info {
-    border-left: 1px solid  #ced4da;
+.courier-info, .manager-info, .customer-info {
     border-right: 1px solid  #ced4da;
     text-align: center;
     padding: .4rem;
@@ -31,4 +34,18 @@
 .add-customers, .new-customer {
     background-color: #fff;
     border: none;
+}
+
+.edit {
+    margin-right: 1rem;
+}
+
+.tender-number-head, .tender-courier-info, .tender-customer-info, .tender-manager-info {
+    text-align: center;
+    color: #9c9c9c;
+    padding: 0 0 0.7rem 0;
+}
+
+.dropdown-menu {
+    padding: 1rem;
 }

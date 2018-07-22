@@ -14,6 +14,12 @@
     <div class="mb-3">
         <select class="custom-select" name="manager_id">
             @if ($managers->count())
+                @if ($tender->manager_id == null)
+                    <option selected value="">Выбрать менеджера (не обязательно)</option>
+                @else
+                    <option value="">Выбрать менеджера (не обязательно)</option>
+                @endif
+
                 @foreach ($managers as $manager)
                     @if ($tender->manager_id == $manager->id)
                         <option selected value="{{ old('manager_id', $manager->id) }}">{{ $manager->full_name() }}</option>
@@ -21,14 +27,27 @@
                         <option value="{{ $manager->id }}">{{ $manager->full_name() }}</option>
                     @endif
                 @endforeach
-
-                @if ($tender->manager_id == null)
-                    <option selected value="">Выбрать менеджера (не обязательно)</option>
-                @else
-                    <option value="">Выбрать менеджера (не обязательно)</option>
-                @endif
             @endif
         </select>
+    </div>
+
+    <div class="mb-3">
+      <select class="custom-select" name="customer_id">
+          @if ($customers->count())
+              @if ($tender->customer_id == null)
+                  <option selected value="">Выбрать заказчика</option>
+              @else
+                  <option value="">Выбрать заказчика</option>
+              @endif
+              @foreach ($customers as $customer)
+                  @if ($tender->customer_id == $customer->id)
+                      <option selected value="{{ old('customer_id', $customer->id) }}">{{ $customer->name_full }}</option>
+                  @elseif ($tender->customer_id != $customer->id)
+                      <option value="{{ $customer->id }}">{{ $customer->name_full }}</option>
+                  @endif
+              @endforeach
+          @endif
+      </select>
     </div>
 
     <button class="btn btn-success" type="submit" value="Сохранить">Сохранить</button>

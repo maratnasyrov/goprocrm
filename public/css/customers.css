@@ -1,0 +1,22 @@
+.info-part {
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-bottom: none;
+    background-color: #fff;
+}
+
+.info-part:first-child{
+    margin-top: 1rem;
+}
+
+.info-part:last-child{
+    border-bottom: 1px solid #ced4da;
+}
+
+.reg-data-name {
+    font-weight: bold;
+}
+
+.reg-data {
+    color: #7b7b7b;
+}

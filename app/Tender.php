@@ -10,6 +10,7 @@ class Tender extends Model
         'number',
         'manager_id',
         'courier_id',
+        'customer_id',
         'win'
     ];
 
@@ -25,5 +26,15 @@ class Tender extends Model
 
     public function courier() {
         return 'Не назначен';
+    }
+
+    public function customer() {
+        $customer = Customer::find($this->customer_id);
+
+        if (isset($customer)) {
+            return $customer->name_short;
+        } else {
+            return 'Не назначен';
+        }
     }
 }

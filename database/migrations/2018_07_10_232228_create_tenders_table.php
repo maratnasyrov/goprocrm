@@ -18,6 +18,7 @@ class CreateTendersTable extends Migration
             $table->string('number');
             $table->integer('manager_id')->nullable();
             $table->integer('courier_id')->nullable();
+            $table->integer('customer_id')->nullable();
             $table->boolean('win')->default(false);
             $table->timestamps();
         });

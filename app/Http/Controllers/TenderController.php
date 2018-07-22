@@ -62,7 +62,8 @@ class TenderController extends Controller
     public function show(Tender $tender)
     {
         $customers = Customer::all();
-        return view('tenders.show', compact('tender', 'customers'));
+        ($tender->customer_id != null) ? $customer = Customer::find($tender->customer_id ) : $customer = null;
+        return view('tenders.show', compact('tender', 'customers', 'customer'));
     }
 
     /**
@@ -87,9 +88,9 @@ class TenderController extends Controller
      */
     public function update(Request $request, Tender $tender)
     {
-        $tender->update($request->all());
+        (sizeof($request->all()) == 3) ? $tender->update($request->only(['customer_id'])) : $tender->update($request->all());
 
-        return redirect()->route('tender.show', [$tender]);
+        return redirect()->route('tender.show', $tender);
     }
 
     /**
