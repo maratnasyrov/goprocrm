@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tender;
 use App\Manager;
 use App\Customer;
+use App\Merchandise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

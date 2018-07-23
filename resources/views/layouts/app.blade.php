@@ -25,6 +25,7 @@
     <link href="{{ asset('css/tenders.css') }}" rel="stylesheet">
     <link href="{{ asset('css/popovers.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customers.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/merchandises.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

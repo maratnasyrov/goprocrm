@@ -14,6 +14,11 @@ class Tender extends Model
         'win'
     ];
 
+    public function merchandises()
+    {
+        return $this->hasMany('App\Merchandise');
+    }
+
     public function manager() {
         $manager = Manager::find($this->manager_id);
 
