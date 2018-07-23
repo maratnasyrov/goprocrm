@@ -18,14 +18,14 @@
         </div>
     </div>
     <div class="row tender-part tender-show">
-        <div class="col-4 tender-number">
+        <div class="col-4 align-self-center tender-number" style="text-align: center;">
             {{ $tender->number }}
         </div>
-        <div class="col-2 courier-info">
+        <div class="col-2 align-self-center courier-info">
             {{ $tender->courier() }}
         </div>
         @if (isset($tender->customer_id))
-            <div class="col-2 customer-info">
+            <div class="col-2 align-self-center customer-info">
                 <button id="show-customer-info-btn" type="button" name="button" class="btn btn-info">{{ $tender->customer() }}</button>
             </div>
         @else
@@ -36,10 +36,10 @@
                 <button id="new-customer-p" type="button" class="btn btn-success far fa-plus-square" data-toggle="popover" title="Новый заказчик" data-content="" data-container="#new-customer" data-placement="bottom"></button>
             </div>
         @endif
-        <div class="col-2 manager-info">
+        <div class="col-2 align-self-center manager-info">
             {{ $tender->manager() }}
         </div>
-        <div class="col-2">
+        <div class="col-2 align-self-center">
             <form onsubmit="if(confirm('Удалить?')){ return true }else{ return false }" action="{{route('tender.destroy', $tender)}}" method="post">
                 <input type="hidden" name="_method" value="DELETE">
                 {{ csrf_field() }}

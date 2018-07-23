@@ -5,8 +5,8 @@
     background-color: #fff;
 }
 
-.info-part:first-child{
-    margin-top: 1rem;
+.customer-info-head {
+    color: #9e9e9e;
 }
 
 .info-part:last-child{
@@ -19,4 +19,10 @@
 
 .reg-data {
     color: #7b7b7b;
+}
+
+.far.fa-times-circle{
+    margin-top: 1rem;
+    font-size: 20px;
+    color: #9e9e9e;
 }
