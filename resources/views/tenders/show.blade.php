@@ -17,7 +17,7 @@
             Менеджер
         </div>
     </div>
-    <div class="tender-part tender-show">
+    <div class="tender-part tender-show border border-white">
         <div class="row">
             <div class="col-4 align-self-center tender-number" style="text-align: center;">
                 {{ $tender->number }}
@@ -62,7 +62,7 @@
         </div>
     @endif
 
-    <div class="merchandises-table">
+    <div class="merchandises-table border border-white">
         <h5>Товары</h5>
         @include('merchandises._merchandises')
 

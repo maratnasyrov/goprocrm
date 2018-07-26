@@ -42,6 +42,13 @@ class MerchandiseController extends Controller
         return redirect()->route('tender.show', $tender);
     }
 
+    public function createmerch_ajax(Request $request)
+    {
+        $merchandise = Merchandise::create($request->all());
+
+        return response()->json(['result' => $merchandise]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -73,8 +80,12 @@ class MerchandiseController extends Controller
      */
     public function update(Request $request, Merchandise $merchandise)
     {
-        //
+        $merchandise->update($request->all());
+        $tender = Tender::find($merchandise->tender_id);
+        return redirect()->route('tender.show', $tender);
     }
+
+
 
     /**
      * Remove the specified resource from storage.

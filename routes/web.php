@@ -16,6 +16,7 @@ Route::group(['middleware'=>'auth'], function() {
     Route::resource('/manager', 'ManagerController');
     Route::resource('/customer', 'CustomerController');
     Route::resource('/merchandise', 'MerchandiseController');
+    Route::post('/createmerch', 'MerchandiseController@createmerch_ajax');
 });
 
 Route::get('/', function () {

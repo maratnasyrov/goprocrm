@@ -3,8 +3,66 @@
     border: 1px solid #ced4da;
     padding: 1rem;
     margin-top: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+
+.merch-link-tbl td {
+    border: none;
 }
 
 .merchandise-form {
     margin-top: 1rem;
+}
+
+.merch-name-btn, .merch-price-btn, .merch-number-btn {
+    width: 100%;
+}
+
+#merchandises.table td {
+    padding: 0;
+}
+
+td.merch-link-tbl  {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+#merchandises.table td.no-change{
+    padding: 0.5rem;
+    text-align: center;
+    color: #9c9c9c;
+}
+
+#merchandises.table th{
+    border-bottom: none;
+    text-align: center;
+}
+
+#merch-name-btn {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+.nav-tabs {
+    border-bottom: none !important;
+}
+.nav-tabs .nav-link {
+    border-radius: 0;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.btn-light {
+    background-color: #fff;
+}
+
+.form-control, .input-group-text, .custom-select, .popover-header, .popover-body, .popover {
+    border-radius: 0;
+}
+
+#merchandises.table input.form-control {
+    border: none;
 }
