@@ -34,8 +34,8 @@
         </form>
     </td>
     <td class="no-change">{{ $merchandise->price * $merchandise->number }}</td>
-    <td class="no-change">{{ $merchandise->order_payment }}</td>
-    <td class="no-change">{{ $merchandise->order_payment * $merchandise->number}}</td>
+    <td class="no-change">{{ $merchandise->set_order_payment($tender, $tender->merchandises) }}</td>
+    <td class="no-change">{{ $merchandise->set_total_order_payment($tender, $tender->merchandises) }}</td>
     <td id="merch-order-link-{{ $merchandise->id }}">
         <div class="input-group merch-link-tbl" style="width: 5.2rem;">
             <button type="button" name="button" class="btn btn-light fas fa-edit" style="border: none; font-size: 1rem;" onclick="showEditLabel({{$merchandise->id}}, 'order-link-')"></button>

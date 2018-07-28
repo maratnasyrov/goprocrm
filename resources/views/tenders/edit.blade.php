@@ -50,6 +50,8 @@
       </select>
     </div>
 
+    <input name="contract_price" type="text" class="form-control" placeholder="Введите сумму контракта" aria-describedby="basic-addon1" value="{{ old('contract_price', $tender->contract_price) }}" required>
+
     <button class="btn btn-success" type="submit" value="Сохранить">Сохранить</button>
 </form>
 

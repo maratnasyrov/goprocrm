@@ -73,26 +73,27 @@
                         <tbody>
                             <tr>
                                 <th>МЦК</th>
-                                <td>0</td>
+                                <td>{{ $tender->contract_price }}</td>
                                 <th>Прибыль</th>
-                                <td>0</td>
+                                <td>{{ $tender->all_total_payment($tender->merchandises) - $tender->purchase_price($tender->merchandises)}}</td>
                             </tr>
                             <tr>
                                 <th>Закупочная</th>
-                                <td>0</td>
+                                <td>{{ $tender->purchase_price($tender->merchandises) }}</td>
                                 <th>Снижение</th>
-                                <td>0</td>
+                                <td>{{ $tender->difference($tender->merchandises) . "%" }}</td>
                             </tr>
                             <tr>
                                 <th>Разница</th>
-                                <td>0</td>
+                                <td>{{ $tender->contract_price - $tender->purchase_price($tender->merchandises) }}</td>
                                 <th>Супер %</th>
-                                <td>0</td>
+                                <td>{{ $tender->super_procent($tender->merchandises) . "%"}}</td>
                             </tr>
                             <tr>
                                 <th>Заявка</th>
-                                <td>0</td>
-                                <th colspan="2"> Статус</td>
+                                <td>{{ $tender->all_total_payment($tender->merchandises) }}</td>
+                                <th> Статус </td>
+                                <td class="{{ $tender->supple_status($tender->merchandises)[1] }}">{{ $tender->supple_status($tender->merchandises)[0] }}</td>
                             </tr>
                         </tbody>
                     </table>

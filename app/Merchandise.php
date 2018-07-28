@@ -32,6 +32,18 @@ class Merchandise extends Model
 
     public function tender()
     {
-        return $this->belongsTo('App\Merchandise', 'App\Tender');
+        return $this->belongsTo('App\Tender');
+    }
+
+    public function set_order_payment($tender, $merchandises_array)
+    {
+        $super_procent = $tender->super_procent($merchandises_array);
+
+        return round($this->price * $super_procent);
+    }
+
+    public function set_total_order_payment($tender, $merchandises_array)
+    {
+        return $this->set_order_payment($tender, $merchandises_array) * $this->number;
     }
 }

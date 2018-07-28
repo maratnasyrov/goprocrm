@@ -19,7 +19,6 @@ class CreateMerchandisesTable extends Migration
             $table->float('price');
             $table->integer('number');
             $table->string('order_link')->nullable();
-            $table->string('order_number')->nullable();
             $table->string('order_provider')->nullable();
             $table->string('order_status')->nullable();
             $table->float('order_payment')->nullable();
