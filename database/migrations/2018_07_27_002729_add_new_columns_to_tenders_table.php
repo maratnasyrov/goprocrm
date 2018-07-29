@@ -14,6 +14,7 @@ class AddNewColumnsToTendersTable extends Migration
     public function up()
     {
         Schema::table('tenders', function (Blueprint $table) {
+            $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('address_last_day')->nullable();
             $table->string('start_time')->nullable();
@@ -33,6 +34,7 @@ class AddNewColumnsToTendersTable extends Migration
     public function down()
     {
         Schema::table('tenders', function (Blueprint $table) {
+            $table->dropColumn('name');
             $table->dropColumn('address');
             $table->dropColumn('address_last_day');
             $table->dropColumn('start_time');

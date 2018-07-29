@@ -1,8 +1,46 @@
-.tender-part {
-    padding: 0.5rem;
-    border: 1px solid #ced4da;
+.tender-part, .tender-part-footer {
+    border-radius: 0;
+    padding: 1rem;
     border-bottom: none;
     background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+
+.tender-part-footer {
+    padding: .4rem .4rem .4rem 1rem;
+    background-color: #d3d7db;
+    border: 1px solid #ced4da;
+}
+
+.tender-part:first-child {
+    margin-top: 1rem;
+}
+
+.end-date {
+    color: #b4b4b4;
+    font-family: sans-serif;
+    margin-bottom: 1rem;
+}
+
+.h5-start-price {
+    color: #b4b4b4;
+    margin-bottom: 0;
+}
+
+.h5-customer {
+    color: #41484e;
+    font-family: sans-serif;
+}
+
+.start-price {
+    color: #41484e;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.date-created, .date-updated {
+    font-family: sans-serif;
 }
 
 .tender-show {
@@ -10,19 +48,33 @@
     box-shadow: 0 2px 6px rgba(0,0,0,.1);
 }
 
-.tender-part:last-child {
-    border-bottom: 1px solid #ced4da;
-    border-radius: 0 0 .25rem .25rem;
-}
-
-.tender-part:first-child {
-    margin-top: 1rem;
-    border-radius: .25rem .25rem 0 0;
-}
-
 .tender-number {
-    padding: .4rem;
-    border-right: 1px solid  #ced4da;
+    padding: .4rem .4rem .4rem 0;
+    font-family: sans-serif;
+    margin-bottom: 0;
+}
+
+.tender-customer, .tender-manager {
+    text-transform: uppercase;
+    color: #b4b4b4;
+}
+
+.tender-manager {
+    color: #41484e;
+}
+
+.tender-name {
+    color: #41484e;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+h5.tender-number {
+    font-weight: bold;
+}
+
+h5.tender-number a{
+    color: #41484e;
 }
 
 .courier-info, .manager-info, .customer-info {

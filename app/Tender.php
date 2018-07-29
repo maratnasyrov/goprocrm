@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\TenderHelper;
 
 class Tender extends Model
 {
+
     protected $fillable = [
+        'name',
         'number',
         'manager_id',
         'courier_id',
@@ -25,33 +28,6 @@ class Tender extends Model
     public function merchandises()
     {
         return $this->hasMany('App\Merchandise');
-    }
-
-    public function manager()
-    {
-        $manager = Manager::find($this->manager_id);
-
-        if (isset($manager)) {
-            return $manager->full_name();
-        } else {
-            return 'Не назначен';
-        }
-    }
-
-    public function courier()
-    {
-        return 'Не назначен';
-    }
-
-    public function customer()
-    {
-        $customer = Customer::find($this->customer_id);
-
-        if (isset($customer)) {
-            return $customer->name_short;
-        } else {
-            return 'Не назначен';
-        }
     }
 
     public function purchase_price($merchandises_array)

@@ -5,6 +5,10 @@
 <form class="form-horizontal" action="{{route('tender.update', $tender)}}" method="post">
     <input type="hidden" name="_method" value="put">
     {{ csrf_field() }}
+
+    <div class="mb-3">
+        <input name="name" type="text" class="form-control" placeholder="Введите наименование закупки" aria-describedby="basic-addon1" value="{{ old('name', $tender->name) }}" required>
+    </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1" for="number">№</span>

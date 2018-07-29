@@ -8,6 +8,7 @@ use App\Customer;
 use App\Merchandise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\TenderHelper;
 
 class TenderController extends Controller
 {
@@ -63,8 +64,9 @@ class TenderController extends Controller
     public function show(Tender $tender)
     {
         $customers = Customer::all();
+        $tender_helper = new TenderHelper($tender->id);
         ($tender->customer_id != null) ? $customer = Customer::find($tender->customer_id ) : $customer = null;
-        return view('tenders.show', compact('tender', 'customers', 'customer'));
+        return view('tenders.show', compact('tender', 'customers', 'customer', 'tender_helper'));
     }
 
     /**

@@ -23,12 +23,12 @@
                 {{ $tender->number }}
             </div>
             <div class="col-2 align-self-center courier-info">
-                {{ $tender->courier() }}
+                {{ $tender_helper->courier() }}
             </div>
             @if (isset($tender->customer_id))
                 <div class="col-2 align-self-center customer-info">
                     <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#customerInfo" aria-expanded="false" aria-controls="customerInfo">
-                      {{ $tender->customer() }}
+                      {{ $tender_helper->customer() }}
                     </button>
                 </div>
             @else
@@ -40,7 +40,7 @@
                 </div>
             @endif
             <div class="col-2 align-self-center manager-info">
-                {{ $tender->manager() }}
+                {{ $tender_helper->manager() }}
             </div>
             <div class="col-2 align-self-center">
                 <form onsubmit="if(confirm('Удалить?')){ return true }else{ return false }" action="{{route('tender.destroy', $tender)}}" method="post">
