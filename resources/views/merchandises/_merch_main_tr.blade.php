@@ -1,38 +1,9 @@
 <tr id="merch-{{ $merchandise->id }}">
     <td></td>
-    <td id="merch-name-form-{{ $merchandise->id }}" style="width:100%;">
-        <form class="form-horizontal" action="{{route('merchandise.update', $merchandise)}}" method="post">
-            <input type="hidden" name="_method" value="put">
-            {{ csrf_field() }}
-            <div class="input-group">
-                <input name="name" type="text" class="form-control" aria-describedby="basic-addon1" value="{{ old('name', $merchandise->name) }}" required>
-                <input name="tender_id" type="text"  value="{{ $tender->id }}"required hidden>
-                <button class="btn btn-light far fa-check-circle" type="submit" hidden></button>
-            </div>
-        </form>
-    </td>
-    <td id="merch-price-form-{{ $merchandise->id }}">
-        <form class="form-horizontal" action="{{route('merchandise.update', $merchandise)}}" method="post"  style="width:6rem;">
-            <input type="hidden" name="_method" value="put">
-            {{ csrf_field() }}
-            <div id="name-input" class="input-group">
-                <input name="price" type="text" class="form-control" aria-describedby="basic-addon1" value="{{ old('price', $merchandise->price) }}" required>
-                <input name="tender_id" type="text"  value="{{ $tender->id }}"required hidden>
-                <button class="btn btn-light far fa-check-circle" type="submit" hidden></button>
-            </div>
-        </form>
-    </td>
-    <td id="merch-number-form-{{ $merchandise->id }}" style="width:100%;">
-        <form class="form-horizontal" action="{{route('merchandise.update', $merchandise)}}" method="post">
-            <input type="hidden" name="_method" value="put">
-            {{ csrf_field() }}
-            <div id="name-input" class="input-group">
-                <input name="number" type="text" class="form-control" aria-describedby="basic-addon1" value="{{ old('price', $merchandise->number) }}" required>
-                <input name="tender_id" type="text"  value="{{ $tender->id }}"required hidden>
-                <button class="btn btn-light far fa-check-circle" type="submit" hidden></button>
-            </div>
-        </form>
-    </td>
+    @include('merchandises._merch_td', ['elem' => "name", "style" => "width:100%;", "style_form" => ""])
+    @include('merchandises._merch_td', ['elem' => "price", "style" => "", "style_form" => "width:6rem;"])
+    @include('merchandises._merch_td', ['elem' => "number", "style" => "width:100%;", "style_form" => ""])
+
     <td class="no-change">{{ $merchandise->price * $merchandise->number }}</td>
     <td class="no-change">{{ $merchandise->set_order_payment($tender, $tender->merchandises) }}</td>
     <td class="no-change">{{ $merchandise->set_total_order_payment($tender, $tender->merchandises) }}</td>

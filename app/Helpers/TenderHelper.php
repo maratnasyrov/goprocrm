@@ -8,15 +8,14 @@
  use App\Customer;
 
  class TenderHelper {
-     public $tender_id;
+     public $tender;
 
-     public function __construct($tender_id) {
-         $this->tender_id = $tender_id;
+     public function __construct($tender) {
+         $this->tender = $tender;
      }
 
      public function manager() {
-         $tender = Tender::find($this->tender_id);
-         $manager = Manager::find($tender->manager_id);
+         $manager = Manager::find($this->tender->manager_id);
 
          if (isset($manager)) {
              return $manager->full_name();
@@ -27,8 +26,7 @@
 
      public function customer()
      {
-         $tender = Tender::find($this->tender_id);
-         $customer = Customer::find($tender->customer_id);
+         $customer = Customer::find($this->tender->customer_id);
 
          if (isset($customer)) {
              return $customer->name_short;

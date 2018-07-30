@@ -4,6 +4,7 @@
     padding: 1rem;
     margin-top: 1rem;
     box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    font-family: sans-serif;
 }
 
 .merch-link-tbl td {
@@ -61,6 +62,7 @@ td.merch-link-tbl  {
 
 .form-control, .input-group-text, .custom-select, .popover-header, .popover-body, .popover {
     border-radius: 0;
+    padding: .55rem .55rem;
 }
 
 #merchandises.table input.form-control {

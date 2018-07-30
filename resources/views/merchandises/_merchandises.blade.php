@@ -29,12 +29,11 @@
         </table>
     </div>
     <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
-      <table class="table table-bordered table-striped">
+      <table id="merchandises" class="table table-bordered">
           <thead>
               <tr>
                   <th>№</th>
                   <th>Наименование</th>
-                  <th>Сумма</th>
                   <th>Номер заказа</th>
                   <th>Поставщик</th>
                   <th>Статус заявки</th>
@@ -46,17 +45,33 @@
 
           <tbody>
               @foreach ($tender->merchandises as $merchandise)
-                  <tr>
-                      <th></th>
-                      <th>{{ $merchandise->name }}</th>
-                      <th>{{ $merchandise->price * $merchandise->number }}</th>
-                      <th>{{ $merchandise->order_number }}</th>
-                      <th>{{ $merchandise->order_provider }}</th>
-                      <th>{{ $merchandise->order_status }}</th>
-                      <th>{{ $merchandise->order_payment_type }}</th>
-                      <th>{{ $merchandise->order_payment_status }}</th>
-                      <th>{{ $merchandise->order_comment }}</th>
-                  </tr>
+                  @include('merchandises._merch_order_tr', [
+                      "merch_order_statuses" => [
+                          "",
+                          "Уточнить наличие",
+                          "Сделать заказ",
+                          "Жду подтверждения",
+                          "Заказ оформлен"
+                      ],
+
+                      "order_payment_types" => [
+                          "",
+                          "Карта",
+                          "Наличные",
+                          "Оплата по счету"
+                      ],
+
+                      "order_payment_statuses" => [
+                          "",
+                          "Перевести Леше",
+                          "Деньги у Леши",
+                          "Оплатить картой",
+                          "Оплачено картой",
+                          "Запросить счет",
+                          "Оплатить счет",
+                          "Счет оплачен"
+                      ]
+                  ])
               @endforeach
           </tbody>
       </table>

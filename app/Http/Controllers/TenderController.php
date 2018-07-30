@@ -64,7 +64,7 @@ class TenderController extends Controller
     public function show(Tender $tender)
     {
         $customers = Customer::all();
-        $tender_helper = new TenderHelper($tender->id);
+        $tender_helper = new TenderHelper($tender);
         ($tender->customer_id != null) ? $customer = Customer::find($tender->customer_id ) : $customer = null;
         return view('tenders.show', compact('tender', 'customers', 'customer', 'tender_helper'));
     }
