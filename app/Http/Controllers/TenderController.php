@@ -61,12 +61,22 @@ class TenderController extends Controller
      * @param  \App\Tender  $tender
      * @return \Illuminate\Http\Response
      */
-    public function show(Tender $tender)
+    public function show(Request $request, Tender $tender)
     {
         $customers = Customer::all();
         $tender_helper = new TenderHelper($tender);
+
+        $t1 = $request->t1;
+        $t2 = $request->t2;
+        $t3 = $request->t3;
+
+        if (($t2 == null) && ($t3 == null)) {
+            $t1 = 'active';
+        }
+
         ($tender->customer_id != null) ? $customer = Customer::find($tender->customer_id ) : $customer = null;
-        return view('tenders.show', compact('tender', 'customers', 'customer', 'tender_helper'));
+
+        return view('tenders.show', compact('tender', 'customers', 'customer', 'tender_helper', 't1', 't2', 't3'));
     }
 
     /**

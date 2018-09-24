@@ -65,6 +65,10 @@ td.merch-link-tbl  {
     padding: .55rem .55rem;
 }
 
+.custom-select {
+    border: none;
+}
+
 #merchandises.table input.form-control {
     border: none;
 }

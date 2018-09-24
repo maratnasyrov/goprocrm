@@ -57,7 +57,7 @@ class MerchandiseController extends Controller
      */
     public function show(Merchandise $merchandise)
     {
-        //
+
     }
 
     /**
@@ -82,7 +82,19 @@ class MerchandiseController extends Controller
     {
         $merchandise->update($request->all());
         $tender = Tender::find($merchandise->tender_id);
-        return redirect()->route('tender.show', $tender);
+        $target = $request->target;
+        $t1 = '';
+        $t2 = '';
+        $t3 = '';
+
+        if ($target == 'main') {
+            $t1 = 'active';
+        } elseif ($target == 'order') {
+            $t2 = 'active';
+        } elseif ($target == 'delivery') {
+            $t3 = 'active';
+        }
+        return redirect()->route('tender.show', [$tender, 't1' => $t1, 't2' => $t2, 't3' => $t3]);
     }
 
 

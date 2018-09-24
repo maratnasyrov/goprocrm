@@ -25,7 +25,7 @@
                         <h5 class="tender-number"><a href="{{route('tender.show', $tender)}}">{{"№ " . $tender->number}}</a></h5>
                         <div class="h5-customer">Заказчик:</div>
                         <div class="tender-customer">
-                            {{ (new TenderHelper($tender->id))->customer() }}
+                            {{ (new TenderHelper($tender))->customer() }}
                         </div>
                         <div class="tender-name">
                             {{ $tender->name }}
@@ -42,7 +42,7 @@
                 </div>
                 <div class="row tender-part-footer">
                     <div class="col-2 tender-manager">
-                        {{(new TenderHelper($tender->id))->manager()}}
+                        {{(new TenderHelper($tender))->manager()}}
                     </div>
                     <div class="col-2">
                         {{ $tender->purchase_price($tender->merchandises) }}

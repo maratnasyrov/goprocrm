@@ -3,7 +3,14 @@
         <input type="hidden" name="_method" value="put">
         {{ csrf_field() }}
         <div class="input-group">
-            <input name="{{$elem}}" type="text" class="form-control" aria-describedby="basic-addon1" value="{{ old($elem, $merchandise->$elem) }}" required>
+            <select class="custom-select" name="{{ $elem }}" onchange="this.form.submit()">
+                @if ($tender->count())
+                    <option value=""></option>
+                    @foreach ($included_array as $included_elem)
+                        <option value="{{ $included_elem }}" {{ old($elem, $merchandise->$elem) == $included_elem ? 'selected' : '' }}> {{ $included_elem }} </option>
+                    @endforeach
+                @endif
+            </select>
             <input name="tender_id" type="text"  value="{{ $tender->id }}"required hidden>
             <input name="target" type="text"  value="{{ $table }}" required hidden>
             <button class="btn btn-light far fa-check-circle" type="submit" hidden></button>

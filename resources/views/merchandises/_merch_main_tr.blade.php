@@ -1,8 +1,8 @@
 <tr id="merch-{{ $merchandise->id }}">
     <td></td>
-    @include('merchandises._merch_td', ['elem' => "name", "style" => "width:100%;", "style_form" => ""])
-    @include('merchandises._merch_td', ['elem' => "price", "style" => "", "style_form" => "width:6rem;"])
-    @include('merchandises._merch_td', ['elem' => "number", "style" => "width:100%;", "style_form" => ""])
+    @include('merchandises._merch_td', ['elem' => "name", "table" => "main", "style" => "width:100%;", "style_form" => ""])
+    @include('merchandises._merch_td', ['elem' => "price", "table" => "main", "style" => "", "style_form" => "width:6rem;"])
+    @include('merchandises._merch_td', ['elem' => "number", "table" => "main", "style" => "width:100%;", "style_form" => ""])
 
     <td class="no-change">{{ $merchandise->price * $merchandise->number }}</td>
     <td class="no-change">{{ $merchandise->set_order_payment($tender, $tender->merchandises) }}</td>
