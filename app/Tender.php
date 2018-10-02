@@ -48,6 +48,7 @@ class Tender extends Model
 
         foreach ($merchandises_array as $merchandise ) {
             $sum += $merchandise->price * $merchandise->number;
+            $sum += $merchandise->delivery_payment;
         }
 
         return $sum;

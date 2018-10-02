@@ -19,10 +19,4 @@ Route::group(['middleware'=>'auth'], function() {
     Route::post('/createmerch', 'MerchandiseController@createmerch_ajax');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

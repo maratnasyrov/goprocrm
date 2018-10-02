@@ -140,7 +140,7 @@
     </div>
 
     <div class="merchandises-table border border-white">
-        <h5>Товары</h5>
+        <h5 style="{{$tender_helper->status_style()}}">Товары (закуплено {{ $tender_helper->purchase() }}%)</h5>
         @include('merchandises._merchandises', [$t1, $t2, $t3])
 
         <div class="row">
