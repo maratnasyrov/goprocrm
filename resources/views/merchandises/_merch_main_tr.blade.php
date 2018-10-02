@@ -1,6 +1,7 @@
 <tr id="merch-{{ $merchandise->id }}">
     <td></td>
-    @include('merchandises._merch_td', ['elem' => "name", "table" => "main", "style" => "width:100%;", "style_form" => ""])
+    @include('merchandises._merch_td', ['elem' => "name", "table" => "main", "style" => "width:80%;", "style_form" => ""])
+    @include('merchandises._merch_td_with_select', ["elem" => "availability", "included_array" => $availabilities, "table" => "main", "style" => "width:60%;", "style_form" => ""])
     @include('merchandises._merch_td', ['elem' => "price", "table" => "main", "style" => "", "style_form" => "width:6rem;"])
     @include('merchandises._merch_td', ['elem' => "number", "table" => "main", "style" => "width:100%;", "style_form" => ""])
 

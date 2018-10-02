@@ -44,9 +44,6 @@
                     @if (Auth::user())
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('tender.index') }}">Обработка</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('tender.index') }}">Тендеры</a>
                             </li>
                             <li class="nav-item">

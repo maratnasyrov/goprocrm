@@ -6,6 +6,30 @@
     box-shadow: 0 2px 6px rgba(0,0,0,.3);
 }
 
+.info {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#tender-info.table td {
+    padding: 0;
+}
+
+#tender-info.table td.name{
+    padding: 0.5rem;
+    text-align: left;
+    color: #495057;
+}
+
+.custom-input {
+    border: none !important;
+}
+
 .tender-part-footer {
     padding: .4rem .4rem .4rem 1rem;
     background-color: #d3d7db;

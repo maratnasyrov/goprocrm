@@ -3,46 +3,36 @@
 @section('content')
 
 <div class="container">
-    <div class="row">
-        <div class="col-4 tender-number-head">
-            Номер извещения
-        </div>
-        <div class="col-2 tender-courier-info">
-            Курьер
-        </div>
-        <div class="col-2 tender-customer-info">
-            Заказчик
-        </div>
-        <div class="col-2 tender-manager-info">
-            Менеджер
-        </div>
-    </div>
-    <div class="tender-part tender-show border border-white">
+    <div class="container">
         <div class="row">
-            <div class="col-4 align-self-center tender-number" style="text-align: center;">
+            <div class="info border border-white col-3 columns" style="text-align: center;">
                 {{ $tender->number }}
             </div>
-            <div class="col-2 align-self-center courier-info">
+            <div class="info border border-white col-2 columns">
                 {{ $tender_helper->courier() }}
             </div>
             @if (isset($tender->customer_id))
-                <div class="col-2 align-self-center customer-info">
+                <div class="info border border-white col-3 columns">
                     <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#customerInfo" aria-expanded="false" aria-controls="customerInfo">
                       {{ $tender_helper->customer() }}
                     </button>
                 </div>
             @else
-                <div id="add-customers" class="col-1">
-                    <button id="add-customers-p" type="button" class="btn btn-info far fa-list-alt" data-toggle="popover" title="Добавить заказчика" data-content="" data-container="#add-customers" data-placement="bottom" style="float: right;"></button>
-                </div>
-                <div id="new-customer" class="col-1">
-                    <button id="new-customer-p" type="button" class="btn btn-success far fa-plus-square" data-toggle="popover" title="Новый заказчик" data-content="" data-container="#new-customer" data-placement="bottom"></button>
+                <div class="info border border-white col-3 columns">
+                    <center>
+                        <nobr id="add-customers">
+                            <button id="add-customers-p" type="button" class="btn btn-info far fa-list-alt" data-toggle="popover" title="Добавить заказчика" data-content="" data-container="#add-customers" data-placement="bottom"></button>
+                        </nobr>
+                        <nobr id="new-customer">
+                            <button id="new-customer-p" type="button" class="btn btn-success far fa-plus-square" data-toggle="popover" title="Новый заказчик" data-content="" data-container="#new-customer" data-placement="bottom"></button>
+                        </nobr>
+                    </center>
                 </div>
             @endif
-            <div class="col-2 align-self-center manager-info">
+            <div class="info border border-white col-2 columns">
                 {{ $tender_helper->manager() }}
             </div>
-            <div class="col-2 align-self-center">
+            <div class="info border border-white col-2 columns">
                 <form onsubmit="if(confirm('Удалить?')){ return true }else{ return false }" action="{{route('tender.destroy', $tender)}}" method="post">
                     <input type="hidden" name="_method" value="DELETE">
                     {{ csrf_field() }}
@@ -61,6 +51,93 @@
           </div>
         </div>
     @endif
+
+    <div class="container">
+        <div class="row">
+            <div class="info border border-white col-4 columns">
+                <h5>Оплата</h5>
+                <table id="tender-info" class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="name"><b>Обработка</b></td>
+                            @include('tenders._tend_td_with_select', ["elem" => "processing_payment", "included_array" => [ 'Не оплачено','Оплачено' ], "style" => "width:50%;", "style_form" => ""])
+                        </tr>
+                        <tr>
+                            <td class="name"><b>Курьер</b></td>
+                            @include('tenders._tend_td_with_select', ["elem" => "manager_payment", "included_array" => [ 'Не оплачено','Оплачено' ], "style" => "width:50%;", "style_form" => ""])
+                        </tr>
+                        <tr>
+                            <td class="name"><b>Менеджер</b></td>
+                            @include('tenders._tend_td_with_select', ["elem" => "courier_payment", "included_array" => [ 'Не оплачено','Оплачено' ], "style" => "width:50%;", "style_form" => ""])
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info border border-white col-4 columns">
+                <h5>Контракт</h5>
+                <table id="tender-info" class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="name"><b>Статус</b></td>
+                            @include('tenders._tend_td_with_select', ["elem" => "contract_status",
+                            "included_array" => [
+                                '',
+                                'Запросить проект',
+                                'Направить скан',
+                                'Направить оригинал',
+                                'Внести обеспечение 1х',
+                                'Внести обеспечение 1,5х',
+                                'Подписан',
+                                'Исполнен'
+                            ], "style" => "width:60%;", "style_form" => ""])
+                        </tr>
+                        <tr>
+                            <td class="name"><b>Номер</b></td>
+                            @include('tenders._tend_td', ['elem' => "contract_number", "style" => "width:60%;", "style_form" => ""])
+                        </tr>
+                        <tr>
+                            <td class="name"><b>Дата</b></td>
+                            @include('tenders._tend_td', ['elem' => "contract_date", "style" => "width:60%;", "style_form" => ""])
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info border border-white col-4 columns">
+                <h5>Документы и доставка</h5>
+                <table id="tender-info" class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="name"><b>Документы</b></td>
+                            @include('tenders._tend_td_with_select', ["elem" => "documents_status",
+                            "included_array" => [
+                                '',
+                                'Создать в Эльбе',
+                                'Направить сканы',
+                                'Жду подтверждения сканов',
+                                'Направить Леше',
+                                'Направлены '
+                            ], "style" => "width:60%;", "style_form" => ""])
+                        </tr>
+                        <tr>
+                            <td class="name"><b>Доставка</b></td>
+                            @include('tenders._tend_td_with_select', ["elem" => "delivery_status",
+                            "included_array" => [
+                                '',
+                                'Согласовать дату',
+                                'Заказать машину',
+                                'Сообщить Леше',
+                                'Доставлено'
+                            ], "style" => "width:60%;", "style_form" => ""])
+                        </tr>
+                        <tr>
+                            <td class="name"><b>Дедлайн</b></td>
+                            @include('tenders._tend_td', ['elem' => "contract_date", "style" => "width:60%;", "style_form" => ""])
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <div class="merchandises-table border border-white">
         <h5>Товары</h5>

@@ -27,7 +27,8 @@ class Merchandise extends Model
         'delivery_comment',
         'tender_id',
         'manager_id',
-        'storekeeper_id'
+        'storekeeper_id',
+        'availability'
     ];
 
     public function tender()

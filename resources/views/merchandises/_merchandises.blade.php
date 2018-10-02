@@ -12,6 +12,7 @@
                 <tr>
                     <th>№</th>
                     <th>Наименование</th>
+                    <th>Наличие</th>
                     <th>Цена</th>
                     <th>Кол-тво</th>
                     <th>Сумма</th>
@@ -23,7 +24,12 @@
 
           <tbody id="merch-table-main">
               @foreach ($tender->merchandises as $merchandise)
-                  @include('merchandises._merch_main_tr')
+                  @include('merchandises._merch_main_tr', [
+                      "availabilities" => [
+                          "В наличии",
+                          "Нет в наличии"
+                      ]
+                  ])
               @endforeach
           </tbody>
         </table>

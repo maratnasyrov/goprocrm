@@ -22,7 +22,19 @@ class Tender extends Model
         'contract_price',
         'ensuring_order',
         'ensuring_contract',
-        'delivery_time'
+        'delivery_time',
+        'contract_number',
+        'contract_date',
+        'contract_status',
+        'problem',
+        'processing_payment',
+        'manager_payment',
+        'courier_payment',
+        'status',
+        'documents_status',
+        'delivery_status',
+        'invoice_date'
+
     ];
 
     public function merchandises()
