@@ -71,4 +71,12 @@
              return "color: #155724;";
          }
      }
+
+     public function check_win_status() {
+         if ($this->tender->status == 'Победа') {
+             return true;
+         } else {
+             return false;
+         }
+     }
  }

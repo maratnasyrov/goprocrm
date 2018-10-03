@@ -65,6 +65,7 @@ class TenderController extends Controller
     {
         $customers = Customer::all();
         $tender_helper = new TenderHelper($tender);
+        $managers = Manager::all();
 
         $t1 = $request->t1;
         $t2 = $request->t2;
@@ -76,7 +77,7 @@ class TenderController extends Controller
 
         ($tender->customer_id != null) ? $customer = Customer::find($tender->customer_id ) : $customer = null;
 
-        return view('tenders.show', compact('tender', 'customers', 'customer', 'tender_helper', 't1', 't2', 't3'));
+        return view('tenders.show', compact('tender', 'customers', 'customer', 'managers', 'tender_helper', 't1', 't2', 't3'));
     }
 
     /**
@@ -87,9 +88,7 @@ class TenderController extends Controller
      */
     public function edit(Tender $tender)
     {
-        $customers = Customer::all();
-        $managers = Manager::all();
-        return view('tenders.edit', compact('tender', 'managers', 'customers'));
+
     }
 
     /**

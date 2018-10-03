@@ -39,7 +39,9 @@
                     <button type="submit" class="btn btn-danger far fa-trash-alt" style="float: right;"></button>
                 </form>
 
-                <a href="{{ route('tender.edit', $tender) }}" class="btn btn-secondary fas fa-edit edit" style="float: right;"></a>
+                <nobr id="edit-tender">
+                    <button type="button" class="btn btn-secondary fas fa-edit edit" data-toggle="modal" data-target="#editTender"></button>
+                </nobr>
             </div>
         </div>
     </div>
@@ -55,7 +57,7 @@
     <div class="container">
         <div class="row">
             <div class="info border border-white col-4 columns">
-                <h5>Оплата</h5>
+                <h5 style="text-align: left;">Оплата</h5>
                 <table id="tender-info" class="table table-bordered">
                     <tbody>
                         <tr>
@@ -74,7 +76,7 @@
                 </table>
             </div>
             <div class="info border border-white col-4 columns">
-                <h5>Контракт</h5>
+                <h5 style="text-align: left;">Контракт</h5>
                 <table id="tender-info" class="table table-bordered">
                     <tbody>
                         <tr>
@@ -103,7 +105,7 @@
                 </table>
             </div>
             <div class="info border border-white col-4 columns">
-                <h5>Документы и доставка</h5>
+                <h5 style="text-align: left;">Документы и доставка</h5>
                 <table id="tender-info" class="table table-bordered">
                     <tbody>
                         <tr>
@@ -189,6 +191,21 @@
 
 <div id="new-customer-label" class="container" style="display: none">
     @include('customers._form')
+</div>
+
+<div class="modal fade" id="editTender" tabindex="-1" role="dialog" aria-labelledby="edit-tender-label" aria-hidden="true">
+    @include('tenders._edit_form', [
+        'tender_statuses' => [
+            'Заявка подана',
+            'Победа',
+            'Проигрыш, цена',
+            'Проигрыш, отклонили',
+            'Не подана, проигрыш',
+            'Не подана, победа',
+            'Отмена, критерий отбора',
+            'Нет в наличии'
+        ]
+    ])
 </div>
 
 @endsection

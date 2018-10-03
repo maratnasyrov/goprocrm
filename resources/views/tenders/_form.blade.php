@@ -7,6 +7,9 @@
       <input name="number" type="text" class="form-control" placeholder="Введите номер извещения" aria-label="Username" aria-describedby="basic-addon1" required>
     </div>
     <div class="mb-3">
+        <input name="contract_price" type="text" class="form-control" placeholder="Введите цену МЦК" aria-label="Username" aria-describedby="basic-addon1" required>
+    </div>
+    <div class="mb-3">
         <select class="custom-select" name="manager_id">
           <option selected value="">Выбрать менеджера (не обязательно)</option>
           @if ($managers->count())
