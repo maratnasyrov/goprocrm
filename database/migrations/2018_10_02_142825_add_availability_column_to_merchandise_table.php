@@ -25,7 +25,7 @@ class AddAvailabilityColumnToMerchandiseTable extends Migration
      */
     public function down()
     {
-        Schema::table('merchandise', function (Blueprint $table) {
+        Schema::table('merchandises', function (Blueprint $table) {
             $table->dropColumn('availability');
         });
     }

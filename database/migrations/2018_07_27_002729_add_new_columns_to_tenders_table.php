@@ -19,10 +19,10 @@ class AddNewColumnsToTendersTable extends Migration
             $table->string('address_last_day')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
-            $table->float('contract_price')->nullable();
-            $table->float('ensuring_order')->nullable();
-            $table->float('ensuring_contract')->nullable();
-            $table->float('delivery_time')->nullable();
+            $table->string('contract_price')->nullable();
+            $table->string('ensuring_order')->nullable();
+            $table->string('ensuring_contract')->nullable();
+            $table->integer('delivery_time')->nullable();
         });
     }
 

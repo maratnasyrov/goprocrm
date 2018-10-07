@@ -56,13 +56,15 @@ class Tender extends Model
 
     public function difference($merchandises_array)
     {
-        if (count($merchandises_array) && $this->contract_price > 0) {
+        $contract_price_float = (float) $this->contract_price;
+
+        if (count($merchandises_array) && $contract_price_float > 0) {
             $all_total_payment = $this->all_total_payment($merchandises_array);
 
             if ($all_total_payment <= 0) {
-                return round(-(($all_total_payment + $this->contract_price) / $this->contract_price) * 100, 2);
+                return round(-(($all_total_payment + $contract_price_float) / $contract_price_float) * 100, 2);
             } elseif ($all_total_payment > 0) {
-                return round((($this->contract_price - $all_total_payment) / $this->contract_price) * 100, 2);
+                return round((($contract_price_float - $all_total_payment) / $contract_price_float) * 100, 2);
             }
         } else {
             return 0;
