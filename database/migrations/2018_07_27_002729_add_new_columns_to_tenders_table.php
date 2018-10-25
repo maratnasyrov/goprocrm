@@ -14,7 +14,7 @@ class AddNewColumnsToTendersTable extends Migration
     public function up()
     {
         Schema::table('tenders', function (Blueprint $table) {
-            $table->string('name')->nullable();
+            $table->string('name', 500)->nullable();
             $table->string('address')->nullable();
             $table->string('address_last_day')->nullable();
             $table->string('start_time')->nullable();

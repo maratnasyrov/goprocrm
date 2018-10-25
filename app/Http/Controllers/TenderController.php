@@ -22,7 +22,7 @@ class TenderController extends Controller
         $managers = Manager::all();
 
         return view('tenders.index', compact('managers'), [
-            'tenders' => Tender::orderBy('created_at', 'desc')->paginate(10)
+            'tenders' => Tender::orderBy('id', 'desc')->paginate(10)
         ]);
     }
 

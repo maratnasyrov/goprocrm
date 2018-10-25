@@ -9,12 +9,14 @@ class Tender extends Model
 {
 
     protected $fillable = [
-        'name',
         'number',
         'manager_id',
         'courier_id',
         'customer_id',
         'win',
+        'created_at',
+        'updated_at',
+        'name',
         'address',
         'address_last_day',
         'start_time',
@@ -33,8 +35,10 @@ class Tender extends Model
         'status',
         'documents_status',
         'delivery_status',
-        'invoice_date'
-
+        'invoice_date',
+        'placing_way_code',
+        'placing_way_name',
+        'notification_xml_id'
     ];
 
     public function merchandises()

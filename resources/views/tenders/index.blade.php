@@ -54,6 +54,8 @@
                 Нет тендеров
             </div>
         @endforelse
+
+        {{ (!empty($tenders)) ? $tenders->render() : ""}}
     </div>
 </div>
 
