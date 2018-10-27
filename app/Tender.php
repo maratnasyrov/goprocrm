@@ -14,8 +14,6 @@ class Tender extends Model
         'courier_id',
         'customer_id',
         'win',
-        'created_at',
-        'updated_at',
         'name',
         'address',
         'address_last_day',

@@ -64,6 +64,13 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'ftp' => [
+            'driver'   => 'ftp',
+            'host'     => 'ftp.zakupki.gov.ru',
+            'username' => 'free',
+            'password' => 'free',
+        ],
+
     ],
 
 ];

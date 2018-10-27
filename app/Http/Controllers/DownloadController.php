@@ -19,31 +19,42 @@ class DownloadController extends Controller
     public function index()
     {
         $data = DownloadController::get_data_from_ftp();
+        $unzip_files = DownloadController::unzip($data['url'], $data['path'], $data['file_list_001']);
+        for ($i=2; $i < sizeof($unzip_files); $i++) {
+            DownloadController::parse_tender_from_xml($unzip_files[$i]);
+        }
 
         return view('downloads.index');
     }
 
     public function get_data_from_ftp()
     {
-        $ftp_server = "ftp.zakupki.gov.ru";
-        $username = "free";
-        $password = "free";
-        $connect = ftp_connect($ftp_server);
+        $ftp = Storage::disk('ftp');
+        $region = "Tatarstan_Resp";
+        $target = "notifications";
+        $month = "currMonth";
+        $all_path = "fcs_regions/$region/$target/$month";
+        $ftp_file_lists = $ftp->allFiles($all_path);
+        $ftp_file_lists_001 = [];
+        $locale_file = Storage::disk('public');
+        $url = $locale_file->getDriver()->getAdapter()->getPathPrefix();
 
-        $login_to_ftp = ftp_login($connect, $username, $password);
-        ftp_pasv($connect, true);
-        $move_to_dir = ftp_chdir($connect, "/fcs_regions/Tatarstan_Resp/notifications/currMonth");
-
-        if ($login_to_ftp && $move_to_dir) {
-            $folder_file_lists = ftp_nlist($connect, '.');
+        foreach ($ftp_file_lists as $name) {
+            if (fnmatch("$all_path/notification_*_001.xml.zip", $name)) {
+                $locale_file->put($name, $ftp->get($name));
+                array_push($ftp_file_lists_001, str_replace("$all_path/", '', $name));
+            }
         }
+        $ftp->getDriver()->getAdapter()->disconnect();
 
-        $locale_file = "/home/vagrant/Downloads/notification_Tatarstan_Resp_2018102300_2018102400_001.xml.zip";
-        $ftp_file = "notification_Tatarstan_Resp_2018102300_2018102400_001.xml.zip";
+        return ['url' => $url, 'path' => $all_path, 'file_list_001' => $ftp_file_lists_001];
+    }
 
-        if (ftp_get($connect, $locale_file, $ftp_file, FTP_BINARY, 0)) {
+    private function unzip($url, $all_path, $ftp_file_lists_001)
+    {
+        for ($i=1; $i < sizeof($ftp_file_lists_001); $i++) {
             $zip = new ZipArchive;
-            $open_zip = $zip->open("/home/vagrant/Downloads/notification_Tatarstan_Resp_2018102300_2018102400_001.xml.zip");
+            $open_zip = $zip->open("$url$all_path/$ftp_file_lists_001[$i]");
             $extract_xml_array = [];
 
             if ($open_zip == true) {
@@ -53,20 +64,13 @@ class DownloadController extends Controller
                         array_push($extract_xml_array, $flag_type);
                     }
                 }
-
                 $zip->extractTo("/home/vagrant/Downloads/extract", $extract_xml_array);
             }
             $zip->close();
         }
-        ftp_close($connect);
-
         $extract_files = scandir("/home/vagrant/Downloads/extract");
 
-        for ($i=2; $i < sizeof($extract_files); $i++) {
-            DownloadController::parse_tender_from_xml($extract_files[$i]);
-        }
-
-        // DownloadController::parse_tender_from_xml($extract_files[12]);
+        return $extract_files;
     }
 
     private function parse_tender_from_xml($xml_filename)
@@ -208,7 +212,7 @@ class DownloadController extends Controller
         $tender_params = [
             "notification_xml_id" => $notification_xml_id,
             "number" => $purchase_number,
-            "name" => $purchase_object_info,
+            "name" => mb_strimwidth($purchase_object_info, 0, 497, "..."),
             "placing_way_code" => $placing_way_code,
             "placing_way_name" => $placing_way_name,
             "contract_price" => $lot_max_price,
