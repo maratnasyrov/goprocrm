@@ -13,11 +13,12 @@
 
 Route::group(['middleware'=>'auth'], function() {
     Route::resource('/tender', 'TenderController');
-    Route::resource('/download', 'DownloadController');
     Route::resource('/manager', 'ManagerController');
     Route::resource('/customer', 'CustomerController');
     Route::resource('/merchandise', 'MerchandiseController');
-    Route::post('/createmerch', 'MerchandiseController@createmerch_ajax');
+    Route::get('/download', 'DownloadController@index');
+    Route::post('/get_data_from_ftp', 'DownloadController@get_data_from_ftp');
+    Route::get('/unzip', 'DownloadController@unzip');
 });
 
 Auth::routes();

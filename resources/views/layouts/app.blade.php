@@ -15,6 +15,7 @@
     <script src="{{ asset('js/popover.js') }}" defer></script>
     <script src="{{ asset('js/customer.js') }}" defer></script>
     <script src="{{ asset('js/merchandise.js') }}" defer></script>
+    <script src="{{ asset('js/download_from_ftp.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">

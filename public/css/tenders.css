@@ -1,3 +1,17 @@
+.information {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.04);
+    padding: 1.5rem;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.disabled {
+    color: #ced4da;
+}
+
 .tender-part, .tender-part-footer {
     border-radius: 0;
     padding: 1rem;

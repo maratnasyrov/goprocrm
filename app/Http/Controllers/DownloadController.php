@@ -18,16 +18,17 @@ class DownloadController extends Controller
      */
     public function index()
     {
-        $data = DownloadController::get_data_from_ftp();
-        $unzip_files = DownloadController::unzip($data['url'], $data['path'], $data['file_list_001']);
-        for ($i=2; $i < sizeof($unzip_files); $i++) {
-            DownloadController::parse_tender_from_xml($unzip_files[$i]);
-        }
+        $regions = ["Tatarstan_Resp" => 'Республика Татарстан'];
+        // $data = DownloadController::get_data_from_ftp();
+        // $unzip_files = DownloadController::unzip($data['url'], $data['path'], $data['file_list_001']);
+        // for ($i=2; $i < sizeof($unzip_files); $i++) {
+        //     DownloadController::parse_tender_from_xml($unzip_files[$i]);
+        // }
 
-        return view('downloads.index');
+        return view('downloads.index', compact('regions'));
     }
 
-    public function get_data_from_ftp()
+    public function get_data_from_ftp(Request $request)
     {
         $ftp = Storage::disk('ftp');
         $region = "Tatarstan_Resp";
@@ -47,27 +48,29 @@ class DownloadController extends Controller
         }
         $ftp->getDriver()->getAdapter()->disconnect();
 
-        return ['url' => $url, 'path' => $all_path, 'file_list_001' => $ftp_file_lists_001];
+        return ['url' => $url, 'path' => $all_path, 'file_lists_001' => $ftp_file_lists_001];
     }
 
-    private function unzip($url, $all_path, $ftp_file_lists_001)
+    public function unzip(Request $request)
     {
-        for ($i=1; $i < sizeof($ftp_file_lists_001); $i++) {
-            $zip = new ZipArchive;
-            $open_zip = $zip->open("$url$all_path/$ftp_file_lists_001[$i]");
-            $extract_xml_array = [];
+        $url = $request['url'];
+        $all_path = $request['path'];
+        $ftp_file_list_001 = $request['file_list_001'] ;
 
-            if ($open_zip == true) {
-                for ($i=0; $i < $zip->numFiles; $i++) {
-                    $flag_type = $zip->getNameIndex($i);
-                    if (fnmatch("*.xml", $flag_type)) {
-                        array_push($extract_xml_array, $flag_type);
-                    }
+        $zip = new ZipArchive;
+        $open_zip = $zip->open("$url$all_path/$ftp_file_list_001");
+        $extract_xml_array = [];
+
+        if ($open_zip == true) {
+            for ($i=0; $i < $zip->numFiles; $i++) {
+                $flag_type = $zip->getNameIndex($i);
+                if (fnmatch("*.xml", $flag_type)) {
+                    array_push($extract_xml_array, $flag_type);
                 }
-                $zip->extractTo("/home/vagrant/Downloads/extract", $extract_xml_array);
             }
-            $zip->close();
+            $zip->extractTo("/home/vagrant/Downloads/extract", $extract_xml_array);
         }
+        $zip->close();
         $extract_files = scandir("/home/vagrant/Downloads/extract");
 
         return $extract_files;
